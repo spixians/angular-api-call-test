@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { freeApiService } from './services/freeapi.services';
+import {Comments} from './classes/comments';
+
 
 @Component({
   selector: 'app-root',
@@ -6,5 +9,22 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'prj';
+  
+
+  constructor(private _freeApiService: freeApiService){
+
+  }
+
+  lstcomments:Comments[];
+  ngOnInit(){
+    this._freeApiService.getcomments()
+    .subscribe
+    (
+      data=>
+      {
+             this.lstcomments = data;
+      }
+    );
+  }
+
 }
